@@ -91,3 +91,7 @@ Set `-retention 720h` (or `SHORTY_RETENTION=720h`) to expire links automatically
 make check   # gofmt, go vet, go test -race, and build
 make fuzz    # run URL validation and routing fuzzers
 ```
+
+## Licence
+
+[MIT](LICENSE) © 2026 Skepta.
