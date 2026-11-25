@@ -1,0 +1,22 @@
+[Unit]
+Description=shorty URL shortener
+After=network.target
+
+[Service]
+Type=simple
+User=shorty
+Group=shorty
+WorkingDirectory=/var/lib/shorty
+EnvironmentFile=/etc/shorty/shorty.env
+ExecStart=/usr/local/bin/shorty
+Restart=on-failure
+RestartSec=3s
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/shorty
+
+[Install]
+WantedBy=multi-user.target

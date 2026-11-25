@@ -1,0 +1,17 @@
+# Example Caddyfile for shorty behind automatic HTTPS.
+# Run shorty bound to loopback only:
+#   shorty -listen 127.0.0.1:8080 -base-url https://s.example.com -trust-proxy=true
+
+s.example.com {
+	encode zstd gzip
+
+	# Tight request body limit at the proxy as well.
+	request_body {
+		max_size 8KB
+	}
+
+	reverse_proxy 127.0.0.1:8080 {
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+	}
+}
